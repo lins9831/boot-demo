@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.FcsAcctMemo;
 import com.example.demo.model.FcsAcctRegister;
+import com.example.demo.redis.RedisService;
 import com.example.demo.service.FcsAcctRegisterService;
 
 @RestController
 @EnableAutoConfiguration
 public class RegAcctController {
 
-	 protected static final Logger logger = LoggerFactory.getLogger(RegAcctController.class);
+	protected static final Logger logger = LoggerFactory.getLogger(RegAcctController.class);
 	@Resource
 	private FcsAcctRegisterService fcsAcctRegisterService;
+	
+	@Resource
+	private RedisService redisService;
 	
 	@RequestMapping("/regcount")
     public Integer regCount(){
@@ -39,5 +43,19 @@ public class RegAcctController {
 		return memo;
 	}
 
+	@RequestMapping("/redisput/{memberCode}/{value}")
+	public String redisPut(@PathVariable("memberCode") String memberCode,@PathVariable("value") String value) {
+		boolean b = redisService.set(memberCode, value);
+		if(b) {
+			return "成功";
+		}else {
+			return "失败";
+		}
+	}
+	
+	@RequestMapping("/redisget/{memberCode}")
+	public String redisget(@PathVariable("memberCode") String memberCode) {
+		return  redisService.get(memberCode)==null?null:redisService.get(memberCode).toString();
+	}
 
 }
