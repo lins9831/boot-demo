@@ -45,7 +45,7 @@ public class RegAcctController {
 
 	@RequestMapping("/redisput/{memberCode}/{value}")
 	public String redisPut(@PathVariable("memberCode") String memberCode,@PathVariable("value") String value) {
-		boolean b = redisService.set(memberCode, value);
+		boolean b = redisService.set(memberCode, value,1000);
 		if(b) {
 			return "成功";
 		}else {
