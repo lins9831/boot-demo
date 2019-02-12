@@ -57,5 +57,5 @@ public class RegAcctController {
 	public String redisget(@PathVariable("memberCode") String memberCode) {
 		return  redisService.get(memberCode)==null?null:redisService.get(memberCode).toString();
 	}
-
+	
 }
