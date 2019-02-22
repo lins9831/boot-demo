@@ -43,6 +43,8 @@ public class MyLogAspect {
 			logger.info("---------------------method:{} response:{}",name,"null");
 	    return rvt;
 	}
+	
+	
 
 //	@After("myLogPointcut()")
 //	public void afterPointcut(JoinPoint jp) {
