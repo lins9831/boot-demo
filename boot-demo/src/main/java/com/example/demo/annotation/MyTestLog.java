@@ -32,3 +32,4 @@ import java.lang.annotation.Target;
 public @interface MyTestLog {
 	String value() default "";
 }
+
