@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.annotation.MyTestLog;
 import com.example.demo.model.FcsAcctMemo;
 import com.example.demo.model.FcsAcctRegister;
 import com.example.demo.redis.RedisService;
@@ -25,6 +26,7 @@ public class RegAcctController {
 	@Resource
 	private RedisService redisService;
 	
+	@MyTestLog("aaa")
 	@RequestMapping("/regcount")
     public Integer regCount(){
 		logger.info("收到请求查询注册表总数");
